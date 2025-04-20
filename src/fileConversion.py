@@ -1,10 +1,20 @@
-from fastapi import FastApi, File, UploadFile
+from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse
 import os
 import subprocess
 import uuid
 
-app = FastApi()
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace "*" with specific origins if needed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 UPLOAD_DIR = "../uploads"
 
